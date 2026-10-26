@@ -18,7 +18,7 @@
   --red:#E0321F;
   --sub:#F4D35E;
   --btn:#C2271A;
-  --dim:rgba(236,232,224,.6);
+  --dim:rgba(236,232,224,.82);
   --bodoni:"Bodoni Moda",Didot,"Times New Roman",serif;
   --grot:"Geologica",system-ui,-apple-system,sans-serif;
   --gut:clamp(18px,4vw,56px);
@@ -30,7 +30,9 @@ img{display:block;max-width:100%}
 main{overflow-x:clip}
 a{color:inherit;text-decoration:none}
 .it{font-family:var(--bodoni);font-style:italic;font-weight:400}
-.subt{color:var(--sub);font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.subt{color:var(--sub);font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.9),0 0 28px rgba(0,0,0,.7)}
+.shadow{text-shadow:0 2px 4px rgba(0,0,0,.7),0 0 50px rgba(0,0,0,.85)}
+html,body{overscroll-behavior:none}
 .scene{position:relative;min-height:100vh;overflow:hidden}
 .full{position:absolute;inset:0}
 .full img{width:100%;height:100%;object-fit:cover}
@@ -67,45 +69,46 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 
 /* HERO */
 #hero .full img{object-position:50% 28%;filter:saturate(.85) contrast(1.05)}
-#hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.15) 0%,rgba(11,10,9,.05) 40%,rgba(11,10,9,.85) 100%)}
+#hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.15) 0%,rgba(11,10,9,.1) 40%,rgba(11,10,9,.92) 100%)}
 #hero h1{position:absolute;left:var(--gut);right:var(--gut);bottom:15vh;font-family:var(--bodoni);font-style:italic;font-weight:400;font-size:clamp(76px,15vw,270px);line-height:.85;letter-spacing:-.04em}
 #hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .08em}
 #hero h1 .c{display:inline-block}
 #hero .row2{display:block;padding-left:8vw}
 #hero .tag{position:absolute;left:var(--gut);bottom:7vh;right:var(--gut);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-#hero .tag p{font-size:clamp(16px,1.4vw,20px);max-width:24em}
+#hero .tag p{font-size:clamp(17px,1.5vw,22px);font-weight:500;max-width:24em;text-shadow:0 1px 3px rgba(0,0,0,.8)}
 .cue{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:12px;white-space:nowrap}
 .cue i{display:block;width:1px;height:46px;background:var(--paper);transform-origin:top;animation:cue 2s cubic-bezier(.65,0,.35,1) infinite}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
 /* TUNNEL */
 #tunnel{height:100vh}
-#tunnel .full img{object-position:49% 50%;filter:sepia(.25) brightness(.8)}
-#tunnel .lines p{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-weight:500;font-size:clamp(30px,4.6vw,72px);line-height:1.05;letter-spacing:-.03em;padding:0 var(--gut);text-shadow:0 4px 40px rgba(0,0,0,.6)}
+#tunnel .full img{object-position:49% 50%;filter:sepia(.25) brightness(.48) contrast(1.1)}
+#tunnel .full::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(11,10,9,.55) 0%,rgba(11,10,9,.2) 70%)}
+#tunnel .lines p{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-weight:500;font-size:clamp(34px,5.2vw,84px);line-height:1.05;letter-spacing:-.03em;padding:0 var(--gut);color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8),0 0 60px rgba(0,0,0,.9)}
 #tunnel .lines p .it{color:var(--sub)}
 #tunnel .flash{position:absolute;inset:0;background:var(--paper);opacity:0}
 
 /* CHAOS */
 #caos{height:100vh;background:var(--paper);color:var(--black)}
 #caos .cloud span{position:absolute;white-space:nowrap;font-family:var(--bodoni);font-style:italic;line-height:1;will-change:transform,opacity,filter}
-#caos .what{font-family:var(--bodoni);font-style:italic;font-size:clamp(64px,11vw,190px);line-height:.9;letter-spacing:-.04em;color:var(--red);position:relative;z-index:2}
-#caos .known{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-weight:500;font-size:clamp(26px,3vw,44px);letter-spacing:-.02em;z-index:2}
+#caos .what{font-family:var(--bodoni);font-style:italic;font-weight:500;font-size:clamp(58px,11vw,190px);line-height:.9;letter-spacing:-.04em;color:var(--red);position:relative;z-index:2}
+#caos .known{position:absolute;left:0;right:0;bottom:14vh;text-align:center;font-weight:600;font-size:clamp(34px,4vw,60px);letter-spacing:-.02em;z-index:2}
 
 /* AFTER */
 #dopo{height:100vh}
-#dopo .full img{object-position:50% 40%;filter:brightness(.55) saturate(.9)}
-#dopo .full::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,10,9,.85) 0%,rgba(11,10,9,.35) 60%,rgba(11,10,9,.1) 100%)}
+#dopo .full img{object-position:50% 40%;filter:brightness(.6) saturate(.9)}
+#dopo .full::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(11,10,9,.6) 0%,rgba(11,10,9,.35) 75%)}
 #dopo .card{z-index:3}
 #dopo .card .big{font-family:var(--bodoni);font-size:clamp(54px,9vw,160px);letter-spacing:-.03em;line-height:.9;font-style:italic}
 #dopo .card .label{margin-top:22px}
-#dopo .talk{position:absolute;left:var(--gut);top:50%;transform:translateY(-50%);width:min(640px,100% - 2*var(--gut));display:flex;flex-direction:column;gap:26px;z-index:2}
-#dopo .ln .who{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:6px}
-#dopo .ln .itl{display:block;font-family:var(--bodoni);font-style:italic;font-size:clamp(26px,3vw,44px);line-height:1.1}
-#dopo .ln .subt{display:block;margin-top:6px;font-size:clamp(15px,1.3vw,18px)}
+#dopo .talk{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(900px,100% - 2*var(--gut));display:flex;flex-direction:column;align-items:center;text-align:center;gap:3.4vh;z-index:2}
+#dopo .ln .who{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#fff;display:block;margin-bottom:6px}
+#dopo .ln .itl{display:block;font-family:var(--grot);font-style:normal;font-weight:600;font-size:clamp(24px,2.9vw,44px);line-height:1.12;letter-spacing:-.02em;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.8)}
+#dopo .ln .subt{display:block;margin-top:6px;font-size:clamp(17px,1.5vw,21px)}
 #dopo .ln.you .itl{color:#fff}
-#dopo .ln.you .who{color:var(--red)}
-#dopo .end{position:absolute;right:var(--gut);bottom:9vh;font-weight:500;font-size:clamp(24px,2.6vw,40px);letter-spacing:-.02em;text-align:right;z-index:2}
-#dopo .end .it{color:var(--sub)}
+#dopo .ln.you .who{color:#FF6B57}
+#dopo .end{position:absolute;left:var(--gut);right:var(--gut);text-align:center;bottom:7vh;font-weight:600;font-size:clamp(28px,3vw,48px);text-shadow:0 2px 6px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.8);letter-spacing:-.02em;z-index:2}
+#dopo .end .it{color:var(--sub);font-family:var(--grot);font-style:normal;font-weight:600}
 
 /* HORIZONTAL SCENES */
 #scene{height:100vh}
@@ -115,11 +118,18 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 #scene .panel.intro h2{font-weight:500;font-size:clamp(40px,6vw,104px);line-height:1;letter-spacing:-.04em;max-width:11em;margin-top:22px}
 #scene .panel.intro h2 .it{color:var(--red)}
 #scene .panel.intro .cue{margin-top:40px}
+#scene .panel.intro .lead-in{margin-top:28px;font-size:clamp(18px,1.7vw,24px);max-width:30em;color:var(--paper)}
 #scene .panel.intro .cue i{width:46px;height:1px;animation:none}
 #scene .num{position:absolute;right:-.06em;bottom:-.2em;font-family:var(--bodoni);font-size:clamp(260px,46vw,720px);line-height:1;opacity:.1;letter-spacing:-.06em;pointer-events:none}
-#scene .where{font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
-#scene .say{font-family:var(--bodoni);font-style:italic;font-size:clamp(48px,7.2vw,132px);line-height:.95;letter-spacing:-.035em;margin:24px 0 26px;max-width:min(9em,100%)}
-#scene .subt{font-size:clamp(18px,1.8vw,26px)}
+#scene .where{font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#fff}
+#scene .say{font-family:var(--bodoni);font-style:italic;font-weight:500;font-size:clamp(38px,5.4vw,96px);line-height:1;letter-spacing:-.03em;margin:16px 0 12px;max-width:min(13em,100%);color:#fff}
+#scene .heard{font-size:clamp(18px,1.7vw,24px)}
+#scene .answers{margin-top:5.5vh;display:grid;gap:16px;width:min(920px,100%);position:relative;z-index:2}
+#scene .answers .h{font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#fff}
+#scene .ans{display:grid;grid-template-columns:48px 1fr;align-items:baseline;border-top:1px solid rgba(255,255,255,.35);padding-top:14px}
+#scene .ans i{font-style:normal;font-size:14px;font-weight:600;color:var(--sub)}
+#scene .ans b{display:block;font-family:var(--grot);font-weight:600;font-size:clamp(21px,2.1vw,34px);line-height:1.15;letter-spacing:-.015em;color:#fff}
+#scene .ans .subt{display:block;margin-top:4px;font-size:clamp(16px,1.3vw,19px)}
 #scene .bar{position:absolute;left:var(--gut);right:var(--gut);bottom:30px;height:1px;background:rgba(236,232,224,.2);z-index:3}
 #scene .bar i{position:absolute;left:0;top:0;height:100%;width:100%;background:var(--paper);transform-origin:left;transform:scaleX(0)}
 
@@ -132,7 +142,7 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 #regia .cr .label{display:block;margin-bottom:12px}
 #regia .cr b{display:block;font-family:var(--bodoni);font-weight:400;font-size:clamp(34px,4vw,64px);line-height:1;letter-spacing:-.02em}
 #regia .cr b.it{font-style:italic}
-#regia .cr span.ru{display:block;margin-top:10px;color:var(--dim);font-size:15px}
+#regia .cr span.ru{display:block;margin-top:10px;color:var(--paper);font-size:17px}
 #regia .cr.lead b{font-size:clamp(46px,6vw,96px)}
 
 /* LESSON TIMER */
@@ -141,8 +151,8 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 #lezione .clock small{font-size:clamp(16px,3.8vw,64px);letter-spacing:0;color:var(--dim);margin-left:.2em}
 #lezione .phase{height:clamp(130px,16vw,200px);position:relative;width:100%;margin-top:4vh}
 #lezione .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center}
-#lezione .ph b{font-family:var(--bodoni);font-style:italic;font-weight:400;font-size:clamp(40px,5vw,84px);color:var(--red);line-height:1}
-#lezione .ph span{margin-top:14px;font-size:clamp(16px,1.5vw,21px);max-width:26em}
+#lezione .ph b{font-family:var(--bodoni);font-style:italic;font-weight:500;font-size:clamp(40px,5vw,84px);color:#FF5440;line-height:1}
+#lezione .ph span{margin-top:14px;font-size:clamp(18px,1.7vw,24px);font-weight:500;max-width:26em}
 #lezione .timeline{position:absolute;left:var(--gut);right:var(--gut);bottom:9vh;display:flex;gap:4px}
 #lezione .timeline div{height:3px;background:rgba(236,232,224,.18);position:relative;overflow:hidden}
 #lezione .timeline div i{position:absolute;inset:0;background:var(--paper);transform-origin:left;transform:scaleX(0)}
@@ -173,7 +183,7 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 .book::before{content:"";position:absolute;inset:0;background:var(--paper);transform:translateY(101%);transition:transform .5s cubic-bezier(.16,1,.3,1);border-radius:inherit}
 .book:hover{color:var(--black)}
 .book:hover::before{transform:none}
-.prices{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-top:6vh;color:var(--dim);font-size:15px}
+.prices{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-top:6vh;color:var(--dim);font-size:17px}
 .prices b{color:var(--paper);font-weight:500}
 
 /* FINALE */
@@ -192,16 +202,16 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
   #hero .full::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--black) 0%,rgba(11,10,9,.6) 22%,transparent 50%)}
   #hero h1{bottom:22vh;z-index:2}
   #hero .tag{z-index:2}
-  #dopo .full{left:42%}
-  #dopo .full::after{background:linear-gradient(90deg,var(--black) 0%,rgba(11,10,9,.55) 25%,rgba(11,10,9,.1) 60%)}
-  #dopo .talk{width:min(600px,52%)}
 }
 @media (max-width:760px){
   #hero h1{bottom:22vh}
   #hero .tag{flex-direction:column;align-items:flex-start}
-  #regia .portrait{width:100%;height:55%}
-  #regia .roll-wrap{width:100%;top:45%;height:55%}
-  #regia .roll{gap:7vh;padding-top:20vh}
+  #regia .portrait{width:100%;height:48%}
+  #regia .roll-wrap{width:100%;top:48%;height:52%}
+  #regia .roll{gap:8vh;padding-top:12vh}
+  #scene .answers{margin-top:3.5vh;gap:12px}
+  #scene .ans{grid-template-columns:30px 1fr;padding-top:10px}
+  #scene .where{font-size:11px}
   .ticket{grid-template-columns:1fr}
   .ticket .main{border-right:0;border-bottom:2px dashed rgba(11,10,9,.25);padding:28px 24px}
   .ticket .main::before,.ticket .main::after{display:none}
@@ -212,8 +222,7 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
   .sticky{left:var(--gut);right:var(--gut);justify-content:center;bottom:16px}
   header{padding:16px var(--gut)}
   header .logo .it{display:none}
-  #dopo .full::after{background:linear-gradient(180deg,rgba(11,10,9,.6),rgba(11,10,9,.85))}
-  #dopo .end{left:var(--gut);text-align:left;bottom:7vh}
+  #dopo .full::after{background:rgba(11,10,9,.72)}
   footer{flex-direction:column;gap:4px;bottom:16px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -290,15 +299,16 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
   <div class="track">
     <div class="panel intro">
       <p class="label">Il metodo</p>
-      <h2>Каждый урок — <span class="it">сцена</span> из вашей будущей жизни.</h2>
+      <h2>Вам говорят — <span class="it">вы отвечаете.</span></h2>
+      <p class="lead-in">Шесть ситуаций из жизни в Италии и готовые варианты ответа. На уроках мы проживаем каждую.</p>
       <span class="cue"><i></i>Scena dopo scena</span>
     </div>
-    <div class="panel" style="background:#6E1C12"><span class="num">01</span><span class="where">Scena 01 · Бар</span><p class="say">Un caffè al banco.</p><p class="subt">Кофе у стойки.</p></div>
-    <div class="panel" style="background:#1D2740"><span class="num">02</span><span class="where">Scena 02 · Квартира</span><p class="say">Le spese sono incluse?</p><p class="subt">Коммунальные платежи включены?</p></div>
-    <div class="panel" style="background:#7C5F22"><span class="num">03</span><span class="where">Scena 03 · Комуне</span><p class="say">Vorrei un appuntamento.</p><p class="subt">Я бы хотела записаться на приём.</p></div>
-    <div class="panel" style="background:#24402F"><span class="num">04</span><span class="where">Scena 04 · Врач</span><p class="say">Mi fa male qui.</p><p class="subt">У меня болит вот здесь.</p></div>
-    <div class="panel" style="background:#9A3418"><span class="num">05</span><span class="where">Scena 05 · Рынок</span><p class="say">Un etto di prosciutto.</p><p class="subt">Сто граммов прошутто.</p></div>
-    <div class="panel" style="background:#352842"><span class="num">06</span><span class="where">Scena 06 · Соседи</span><p class="say">Piacere, sono la nuova vicina!</p><p class="subt">Очень приятно, я ваша новая соседка!</p></div>
+    <div class="panel" style="background:#6E1C12"><span class="num">01</span><span class="where">Scena 01 · Бар · Бариста говорит</span><p class="say">«Cosa le preparo?»</p><p class="subt heard">Что вам приготовить?</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>Un caffè, per favore.</b><span class="subt">Эспрессо, пожалуйста.</span></div></div><div class="ans"><i>B</i><div><b>Un cappuccino da portare via.</b><span class="subt">Капучино с собой.</span></div></div><div class="ans"><i>C</i><div><b>Per me un cornetto alla crema.</b><span class="subt">Мне круассан с кремом.</span></div></div></div></div>
+    <div class="panel" style="background:#1D2740"><span class="num">02</span><span class="where">Scena 02 · Квартира · Хозяин квартиры говорит</span><p class="say">«Le spese condominiali sono a parte.»</p><p class="subt heard">Расходы на обслуживание дома — отдельно.</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>Quanto sono al mese, più o meno?</b><span class="subt">Сколько это примерно в месяц?</span></div></div><div class="ans"><i>B</i><div><b>Il riscaldamento è incluso?</b><span class="subt">А отопление входит?</span></div></div></div></div>
+    <div class="panel" style="background:#6A511C"><span class="num">03</span><span class="where">Scena 03 · Комуне · Сотрудник говорит</span><p class="say">«Ha portato il permesso di soggiorno?»</p><p class="subt heard">Вы принесли вид на жительство?</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>Sì, eccolo. Serve anche una copia?</b><span class="subt">Да, вот он. Копия тоже нужна?</span></div></div><div class="ans"><i>B</i><div><b>Non ancora. Posso portarlo domani?</b><span class="subt">Пока нет. Можно принести завтра?</span></div></div></div></div>
+    <div class="panel" style="background:#24402F"><span class="num">04</span><span class="where">Scena 04 · Врач · Врач говорит</span><p class="say">«Che sintomi ha?»</p><p class="subt heard">Какие у вас симптомы?</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>Ho la febbre da due giorni.</b><span class="subt">У меня температура уже два дня.</span></div></div><div class="ans"><i>B</i><div><b>Mi fa male la gola quando deglutisco.</b><span class="subt">Болит горло, когда глотаю.</span></div></div></div></div>
+    <div class="panel" style="background:#8A2E15"><span class="num">05</span><span class="where">Scena 05 · Рынок · Продавец говорит</span><p class="say">«Altro?»</p><p class="subt heard">Что-нибудь ещё?</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>No, basta così, grazie.</b><span class="subt">Нет, это всё, спасибо.</span></div></div><div class="ans"><i>B</i><div><b>Sì, mezzo chilo di pomodori.</b><span class="subt">Да, полкило помидоров.</span></div></div></div></div>
+    <div class="panel" style="background:#352842"><span class="num">06</span><span class="where">Scena 06 · Соседи · Соседка говорит</span><p class="say">«Lei è nuova qui, vero?»</p><p class="subt heard">Вы ведь здесь недавно?</p><div class="answers"><span class="h">Как ответить</span><div class="ans"><i>A</i><div><b>Sì, abito qui da una settimana.</b><span class="subt">Да, живу здесь всего неделю.</span></div></div><div class="ans"><i>B</i><div><b>Sì! Piacere, mi chiamo…</b><span class="subt">Да! Очень приятно, меня зовут…</span></div></div></div></div>
   </div>
   <div class="bar"><i></i></div>
 </section>
@@ -352,7 +362,6 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
 <section class="scene" id="fine">
   <div class="center">
     <p class="words"><span class="fine">Fine.<i class="strike"></i></span><span class="inizio">Inizio.</span></p>
-    <p>Этот фильм заканчивается. Ваш итальянский начинается с одного сообщения.</p>
     <a class="book" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener"><span>Написать Дарье в Telegram</span><span>→</span></a>
   </div>
   <footer><span>© 2026 Дарья Деева · Итальянский онлайн</span><span>@Daria_healthcoach</span></footer>
@@ -373,7 +382,7 @@ const P = [
   {from:0, to:5,  it:'Riscaldamento', ru:'Разогрев: пара лёгких вопросов на итальянском.'},
   {from:5, to:15, it:'Video',         ru:'Сцена из жизни: настоящий бар, настоящая скорость речи.'},
   {from:15,to:30, it:'Lingua viva',   ru:'Разбираем живые фразы и произношение.'},
-  {from:30,to:50, it:'Gioco di ruolo',ru:'Ролевая игра: я бариста, вы гость.'},
+  {from:30,to:50, it:'Dialogo',       ru:'Разыгрываем ситуацию: я бариста, вы гость.'},
   {from:50,to:60, it:'Missione',      ru:'Задание в реальную жизнь до следующей встречи.'}
 ];
 const phase = $('#phase'), tl = $('#tl');
@@ -387,13 +396,14 @@ const phs = $$('#phase .ph'), bars = $$('#tl i');
 const words = ['Allora…','Mi scusi?','Codice fiscale','Avanti!','Prego?','Ma dai!','Che cosa vuole?','Il numero, per favore','Tocca a lei','Senta…','Boh','Lo scontrino!','Dica!','Una firma qui','Allo sportello tre','Torni domani','Ha la ricetta?','Contanti o carta?','Sacchetto?','Basta così?','Permesso di soggiorno','Va bene?','Insomma…','Non c\'è problema','Si accomodi','Mi segue?','Eh, niente','Come no!'];
 const cloud = $('#caos .cloud');
 let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-words.forEach(w => {
+const narrow = innerWidth < 760;
+(narrow ? words.slice(0,16) : words).forEach(w => {
   const s = document.createElement('span');
   s.textContent = w;
-  s.style.left = (rnd()*80 + 2) + '%';
+  s.style.left = (rnd()*(narrow ? 60 : 80) + 2) + '%';
   s.style.top = (rnd()*86 + 4) + '%';
-  s.style.fontSize = (18 + rnd()*48) + 'px';
-  s.style.opacity = (.25 + rnd()*.6).toFixed(2);
+  const size = 16 + rnd()*44;
+  s.style.fontSize = `clamp(12px, ${(size/12.8).toFixed(2)}vw, ${size.toFixed(0)}px)`;
   cloud.appendChild(s);
 });
 
@@ -409,6 +419,7 @@ if (!window.gsap || !window.ScrollTrigger || reduce) {
   $('#dopo .talk').style.cssText='position:relative;transform:none;top:auto;padding:10vh 0';
   $('#dopo .end').style.position='relative';
   $('#scene .track').style.cssText='flex-direction:column;width:100%';
+  $$('#scene .panel').forEach(p=>{p.style.height='auto';p.style.padding='14vh var(--gut)'});
   $('#regia .portrait').style.cssText='position:relative;width:100%;height:80vh';
   $('#regia .roll-wrap').style.cssText='position:relative;width:100%';
   $('#phase').style.height='auto';
@@ -419,9 +430,10 @@ if (!window.gsap || !window.ScrollTrigger || reduce) {
 }
 
 gsap.registerPlugin(ScrollTrigger);
-if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 scrollTo(0,0);
 ScrollTrigger.config({ignoreMobileResize:true});
+const SCRUB = .6;
 
 // cursor
 const cur = $('.cursor');
@@ -442,8 +454,11 @@ const h1 = $('#hero h1');
 });
 
 // intro: slate, then shutter opens on the hero
+let introDone = false;
 document.documentElement.style.overflow = 'hidden';
-const intro = gsap.timeline({defaults:{ease:'power3.out'},onComplete(){document.documentElement.style.overflow='';const i=$('#intro');i&&i.remove();ScrollTrigger.refresh();}});
+const intro = gsap.timeline({defaults:{ease:'power3.out'},onComplete(){
+  introDone = true; document.documentElement.style.overflow=''; const i=$('#intro'); i&&i.remove(); ScrollTrigger.refresh();
+}});
 intro
   .from('#intro .time',{opacity:0,letterSpacing:'1em',duration:1.1})
   .from('#intro .presenta',{opacity:0,y:30,filter:'blur(10px)',duration:1.2},'-=.4')
@@ -457,7 +472,6 @@ intro
   .from('#hero .tag > *',{opacity:0,y:20,duration:1,stagger:.15},'-=.8');
 $('#intro').style.pointerEvents='auto';
 $('#intro').addEventListener('click',()=>intro.progress(1));
-addEventListener('wheel',()=>{ if(intro.progress()<.45) intro.timeScale(3); },{passive:true,once:true});
 
 // hero exit
 gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}})
@@ -469,14 +483,17 @@ gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',s
 ScrollTrigger.create({trigger:'#tunnel',start:'top 40%',endTrigger:'#biglietto',end:'top 60%',
   onToggle:self=>$('.sticky').classList.toggle('show',self.isActive)});
 
+// Every timeline marks "beats" with labels named stop*: the page rests on each one.
+
 // tunnel: dolly into the arcade
 const tLines = $$('#tunnel .lines p');
 gsap.set(tLines,{opacity:0,y:40,filter:'blur(12px)'});
-const tun = gsap.timeline({scrollTrigger:{trigger:'#tunnel',start:'top top',end:'+=320%',pin:true,scrub:1}});
+const tun = gsap.timeline({scrollTrigger:{trigger:'#tunnel',start:'top top',end:'+=320%',pin:true,scrub:SCRUB}});
 tun.fromTo('#tunnel .zoom',{scale:1.05},{scale:4.2,transformOrigin:'49% 46%',ease:'power1.in',duration:10},0);
 tLines.forEach((p,i) => {
   const at = .6 + i*2.9;
-  tun.to(p,{opacity:1,y:0,filter:'blur(0px)',duration:1,ease:'power2.out'},at);
+  tun.to(p,{opacity:1,y:0,filter:'blur(0px)',duration:1,ease:'power2.out'},at)
+     .addLabel('stop-t'+i, at+1.4);
   if (i < tLines.length-1) tun.to(p,{opacity:0,y:-40,filter:'blur(12px)',duration:.9,ease:'power2.in'},at+1.9);
 });
 tun.to(tLines[tLines.length-1],{scale:1.15,opacity:0,duration:.8},9.2)
@@ -487,55 +504,66 @@ const cw = $$('#caos .cloud span');
 gsap.set(cw,{opacity:0,scale:0,rotate:()=>gsap.utils.random(-25,25)});
 gsap.set('#caos .what',{opacity:0,scale:2.4,filter:'blur(20px)'});
 gsap.set('#caos .known',{opacity:0,y:30});
-gsap.timeline({scrollTrigger:{trigger:'#caos',start:'top top',end:'+=260%',pin:true,scrub:1}})
-  .to(cw,{opacity:i=>.3+((i*37)%60)/100,scale:1,rotate:0,duration:2,stagger:{each:.12,from:'random'},ease:'back.out(2)'},0)
+gsap.timeline({scrollTrigger:{trigger:'#caos',start:'top top',end:'+=260%',pin:true,scrub:SCRUB}})
+  .to(cw,{opacity:i=>.35+((i*37)%55)/100,scale:1,rotate:0,duration:2,stagger:{each:.12,from:'random'},ease:'back.out(2)'},0)
   .to(cw,{x:()=>gsap.utils.random(-60,60),y:()=>gsap.utils.random(-40,40),duration:4,ease:'none'},0)
-  .to('#caos .what',{opacity:1,scale:1,filter:'blur(0px)',duration:1.2,ease:'expo.out'},2.6)
-  .to(cw,{filter:'blur(8px)',opacity:.08,duration:1.2},4.2)
-  .to('#caos .what',{scale:.9,opacity:.15,duration:1.2},4.2)
+  .addLabel('stop-flood',2.3)
+  .to(cw,{filter:'blur(6px)',opacity:.13,duration:.9},2.6)
+  .to('#caos .what',{opacity:1,scale:1,filter:'blur(0px)',duration:1.2,ease:'expo.out'},2.7)
+  .addLabel('stop-what',3.9)
+  .to(cw,{filter:'blur(10px)',opacity:.05,duration:1.2},4.2)
+  .to('#caos .what',{scale:.9,opacity:.12,duration:1.2},4.2)
   .to('#caos .known',{opacity:1,y:0,duration:1},4.6)
-  .to({}, {duration:.8});
+  .addLabel('stop-known',5.8)
+  .to({}, {duration:.6});
 
 // three months later
 const lns = $$('#dopo .ln');
 gsap.set('#dopo .full',{opacity:0,scale:1.25});
 gsap.set('#dopo .card',{opacity:0});
 gsap.set('#dopo .card .big',{letterSpacing:'.2em',filter:'blur(14px)'});
-gsap.set(lns,{opacity:0,x:-40});
+gsap.set(lns,{opacity:0,y:30});
 gsap.set($$('#dopo .ln .subt'),{opacity:0});
 gsap.set('#dopo .end',{opacity:0,y:30});
-const dopo = gsap.timeline({scrollTrigger:{trigger:'#dopo',start:'top top',end:'+=380%',pin:true,scrub:1}});
+const dopo = gsap.timeline({scrollTrigger:{trigger:'#dopo',start:'top top',end:'+=420%',pin:true,scrub:SCRUB}});
 dopo.to('#dopo .card',{opacity:1,duration:1},0)
     .to('#dopo .card .big',{letterSpacing:'-.03em',filter:'blur(0px)',duration:1.6,ease:'power2.out'},0)
+    .addLabel('stop-card',1.8)
     .to('#dopo .card',{opacity:0,scale:.92,duration:.8},2.2)
-    .to('#dopo .full',{opacity:1,scale:1,duration:2.4,ease:'power2.out'},2.4);
+    .to('#dopo .full',{opacity:1,scale:1,duration:2.4,ease:'power2.out'},2.4)
+    // the photo sinks back so the dialogue reads cleanly
+    .to('#dopo .full img',{filter:'brightness(.32) saturate(.7) blur(3px)',duration:1.2},3.4);
 lns.forEach((l,i) => {
-  const at = 3.6 + i*1.3;
-  dopo.to(l,{opacity:1,x:0,duration:.7,ease:'power3.out'},at)
-      .to(l.querySelector('.subt'),{opacity:1,duration:.5},at+.45);
+  const at = 3.6 + i*1.5;
+  dopo.to(l,{opacity:1,y:0,duration:.7,ease:'power3.out'},at)
+      .to(l.querySelector('.subt'),{opacity:1,duration:.5},at+.45)
+      .addLabel('stop-l'+i, at+1.05);
 });
-dopo.to(lns,{opacity:.55,duration:.6},9.2)
-    .to('#dopo .end',{opacity:1,y:0,duration:.8},9.3)
-    .to({}, {duration:.8});
+dopo.to('#dopo .end',{opacity:1,y:0,duration:.8},9.8)
+    .addLabel('stop-end',10.8)
+    .to({}, {duration:.5});
 
 // horizontal scenes
 const track = $('#scene .track');
 const dist = () => track.scrollWidth - innerWidth;
 const hz = gsap.to(track,{x:()=>-dist(),ease:'none',
-  scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
-gsap.to('#scene .bar i',{scaleX:1,ease:'none',scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist(),scrub:true,invalidateOnRefresh:true}});
+  scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist()*1.4,pin:true,scrub:SCRUB,invalidateOnRefresh:true}});
+gsap.to('#scene .bar i',{scaleX:1,ease:'none',scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist()*1.4,scrub:true,invalidateOnRefresh:true}});
 $$('#scene .panel:not(.intro)').forEach(p => {
-  gsap.from(p.querySelector('.say'),{yPercent:60,opacity:0,ease:'power3.out',scrollTrigger:{trigger:p,containerAnimation:hz,start:'left 75%',end:'left 25%',scrub:true}});
-  gsap.from(p.querySelector('.subt'),{opacity:0,y:20,scrollTrigger:{trigger:p,containerAnimation:hz,start:'left 50%',end:'left 15%',scrub:true}});
-  gsap.fromTo(p.querySelector('.num'),{xPercent:40},{xPercent:-30,ease:'none',scrollTrigger:{trigger:p,containerAnimation:hz,start:'left right',end:'right left',scrub:true}});
+  const ca = {trigger:p,containerAnimation:hz,scrub:true};
+  gsap.from(p.querySelector('.say'),{yPercent:50,opacity:0,ease:'power3.out',scrollTrigger:{...ca,start:'left 80%',end:'left 30%'}});
+  gsap.from(p.querySelector('.heard'),{opacity:0,y:20,scrollTrigger:{...ca,start:'left 65%',end:'left 25%'}});
+  gsap.from(p.querySelectorAll('.answers > *'),{opacity:0,x:60,stagger:.15,scrollTrigger:{...ca,start:'left 55%',end:'left 8%'}});
+  gsap.fromTo(p.querySelector('.num'),{xPercent:40},{xPercent:-30,ease:'none',scrollTrigger:{...ca,start:'left right',end:'right left'}});
 });
 
 // credits
 gsap.set('#regia .portrait',{clipPath:'circle(0% at 50% 45%)'});
-gsap.timeline({scrollTrigger:{trigger:'#regia',start:'top top',end:'+=300%',pin:true,scrub:1}})
+const reg = gsap.timeline({scrollTrigger:{trigger:'#regia',start:'top top',end:'+=320%',pin:true,scrub:SCRUB}})
   .to('#regia .portrait',{clipPath:'circle(75% at 50% 45%)',duration:2,ease:'power2.inOut'},0)
   .fromTo('#regia .portrait img',{scale:1.4},{scale:1,duration:3,ease:'power2.out'},0)
   .fromTo('#regia .roll',{yPercent:20},{yPercent:-62,duration:6,ease:'none'},.6);
+[.25,.45,.62,.8,.97].forEach((f,i)=>reg.addLabel('stop-c'+i,.6+6*f));
 
 // lesson clock
 gsap.set(phs,{opacity:0,y:30});
@@ -547,7 +575,7 @@ const setPhase = k => {
   active = k;
 };
 const clock = {t:0};
-gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=320%',pin:true,scrub:1}})
+const les = gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=340%',pin:true,scrub:SCRUB}})
   .to(clock,{t:60,ease:'none',duration:10,onUpdate(){
     const t = clock.t;
     $('#mm').textContent = String(Math.floor(t)).padStart(2,'0');
@@ -555,14 +583,15 @@ gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=320%',pi
     setPhase(k);
     P.forEach((p,i) => bars[i].style.transform = `scaleX(${gsap.utils.clamp(0,1,(t-p.from)/(p.to-p.from))})`);
   }})
-  .to({}, {duration:1});
+  .to({}, {duration:.6});
+P.forEach((p,i)=>les.addLabel('stop-p'+i, ((p.from+p.to)/2)/6));
 setPhase(0);
 
 // ticket
 const ticket = $('#ticket');
-gsap.from(ticket,{rotateX:70,y:200,opacity:0,ease:'power3.out',scrollTrigger:{trigger:'#biglietto',start:'top 75%',end:'top 15%',scrub:1}});
-gsap.from('#biglietto h2',{opacity:0,y:60,scrollTrigger:{trigger:'#biglietto',start:'top 85%',end:'top 40%',scrub:1}});
-gsap.from(['#biglietto .book','#biglietto .prices'],{opacity:0,y:40,stagger:.2,scrollTrigger:{trigger:ticket,start:'bottom 90%',end:'bottom 60%',scrub:1}});
+gsap.from(ticket,{rotateX:70,y:200,opacity:0,ease:'power3.out',scrollTrigger:{trigger:'#biglietto',start:'top 80%',end:'top 20%',scrub:SCRUB}});
+gsap.from('#biglietto h2',{opacity:0,y:60,scrollTrigger:{trigger:'#biglietto',start:'top 90%',end:'top 45%',scrub:SCRUB}});
+gsap.from(['#biglietto .book','#biglietto .prices'],{opacity:0,y:40,stagger:.2,scrollTrigger:{trigger:'#biglietto',start:'top 60%',end:'top 10%',scrub:SCRUB}});
 if (matchMedia('(pointer:fine)').matches) {
   const rx = gsap.quickTo(ticket,'rotationX',{duration:.6,ease:'power3'}), ry = gsap.quickTo(ticket,'rotationY',{duration:.6,ease:'power3'});
   ticket.addEventListener('mousemove', e => {
@@ -575,16 +604,81 @@ if (matchMedia('(pointer:fine)').matches) {
 
 // finale: Fine → Inizio
 gsap.set('#fine .inizio',{yPercent:60,opacity:0});
-gsap.set(['#fine .center > p:not(.words)','#fine .book'],{opacity:0,y:30});
-gsap.timeline({scrollTrigger:{trigger:'#fine',start:'top top',end:'+=200%',pin:true,scrub:1}})
+gsap.set('#fine .book',{opacity:0,y:30});
+gsap.timeline({scrollTrigger:{trigger:'#fine',start:'top top',end:'+=160%',pin:true,scrub:SCRUB}})
   .from('#fine .fine',{opacity:0,scale:1.4,filter:'blur(16px)',duration:1})
   .to('#fine .strike',{scaleX:1,duration:.8,ease:'power2.inOut'},'+=.3')
   .to('#fine .fine',{opacity:.35,duration:.5})
   .to('#fine .inizio',{yPercent:0,opacity:1,duration:1,ease:'expo.out'})
-  .to(['#fine .center > p:not(.words)','#fine .book'],{opacity:1,y:0,stagger:.2,duration:.8})
-  .to({}, {duration:.6});
+  .to('#fine .book',{opacity:1,y:0,duration:.8})
+  .addLabel('stop-fine')
+  .to({}, {duration:.3});
+
+// ---------- one gesture = one beat ----------
+let stops = [];
+function buildStops(){
+  const out = [0];
+  ScrollTrigger.getAll().forEach(st => {
+    if (!st.pin) return;
+    const len = st.end - st.start, anim = st.animation;
+    if (st.trigger.id === 'scene') {
+      const n = $$('#scene .panel').length;
+      for (let i = 0; i < n; i++) out.push(st.start + len * i/(n-1));
+      return;
+    }
+    if (!anim || !anim.labels) return;
+    Object.entries(anim.labels).forEach(([k,t]) => { if (k.startsWith('stop')) out.push(st.start + len * t/anim.duration()); });
+  });
+  const b = $('#biglietto');
+  out.push(b.offsetTop + Math.max(0, b.offsetHeight - innerHeight) * .5);
+  if (b.offsetHeight > innerHeight * 1.15) out.push(b.offsetTop + b.offsetHeight - innerHeight);
+  const max = ScrollTrigger.maxScroll(window);
+  stops = out.map(y => Math.round(Math.min(y, max))).sort((a,b)=>a-b).filter((y,i,a)=>i===0 || y - a[i-1] > 40);
+}
+ScrollTrigger.addEventListener('refresh', buildStops);
+
+let busy = false, lastEvt = 0, stream = 0, used = -1;
+function goTo(y){
+  busy = true;
+  const proxy = {y: scrollY}, d = Math.abs(y - scrollY);
+  gsap.to(proxy,{y,duration:gsap.utils.clamp(.9,1.9,d/850),ease:'power2.inOut',
+    onUpdate:()=>scrollTo(0,proxy.y),
+    onComplete:()=>setTimeout(()=>busy=false,250)});
+}
+function step(dir){
+  if (!introDone) { if (intro.progress() < .5) intro.timeScale(3); return; }
+  const y = scrollY;
+  const t = dir > 0 ? stops.find(s => s > y + 8) : [...stops].reverse().find(s => s < y - 8);
+  if (t !== undefined) goTo(t);
+}
+// a continuous stream of wheel/trackpad events counts as a single gesture
+function gesture(dir){
+  const now = performance.now();
+  if (now - lastEvt > 220) stream++;
+  lastEvt = now;
+  if (busy) { used = stream; return; }
+  if (used === stream) return;
+  used = stream;
+  step(dir);
+}
+addEventListener('wheel', e => { e.preventDefault(); if (Math.abs(e.deltaY) > 2) gesture(e.deltaY > 0 ? 1 : -1); }, {passive:false});
+let ty = null;
+addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, {passive:true});
+addEventListener('touchmove', e => { if (!e.target.closest('a')) e.preventDefault(); }, {passive:false});
+addEventListener('touchend', e => {
+  if (ty === null) return;
+  const dy = ty - e.changedTouches[0].clientY; ty = null;
+  if (Math.abs(dy) > 35 && !busy) step(dy > 0 ? 1 : -1);
+}, {passive:true});
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (['ArrowDown','PageDown',' '].includes(k)) { e.preventDefault(); if (!busy) step(1); }
+  if (['ArrowUp','PageUp'].includes(k)) { e.preventDefault(); if (!busy) step(-1); }
+});
+$('header .logo').addEventListener('click', e => { e.preventDefault(); goTo(0); });
 
 addEventListener('load',()=>ScrollTrigger.refresh());
+buildStops();
 })();
 </script>
 </body>
