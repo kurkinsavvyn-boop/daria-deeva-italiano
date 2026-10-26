@@ -94,21 +94,6 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 #caos .what{font-family:var(--bodoni);font-style:normal;font-weight:500;font-size:clamp(38px,7.2vw,124px);line-height:.9;letter-spacing:-.025em;color:var(--red);position:relative;z-index:2}
 #caos .known{position:absolute;left:0;right:0;bottom:14vh;text-align:center;font-weight:600;font-size:clamp(34px,4vw,60px);letter-spacing:-.02em;z-index:2}
 
-/* AFTER */
-#dopo{height:100vh}
-#dopo .full img{object-position:50% 40%;filter:brightness(.6) saturate(.9)}
-#dopo .full::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(11,10,9,.6) 0%,rgba(11,10,9,.35) 75%)}
-#dopo .card{z-index:3}
-#dopo .card .big{font-family:var(--bodoni);font-size:clamp(34px,6vw,104px);letter-spacing:-.025em;line-height:.9;font-style:normal}
-#dopo .card .label{margin-top:22px}
-#dopo .talk{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(900px,100% - 2*var(--gut));display:flex;flex-direction:column;align-items:center;text-align:center;gap:3.4vh;z-index:2}
-#dopo .ln .who{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#fff;display:block;margin-bottom:6px}
-#dopo .ln .itl{display:block;font-family:var(--bodoni);font-style:normal;font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.2;letter-spacing:-.01em;cursor:help;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.8)}
-#dopo .ln .subt{display:block;margin-top:6px;font-size:clamp(17px,1.5vw,21px)}
-#dopo .ln.you .itl{color:#fff}
-#dopo .ln.you .who{color:#FF6B57}
-#dopo .end{position:absolute;left:var(--gut);right:var(--gut);text-align:center;bottom:7vh;font-weight:600;font-size:clamp(28px,3vw,48px);text-shadow:0 2px 6px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.8);letter-spacing:-.02em;z-index:2}
-#dopo .end .it{color:var(--sub);font-family:var(--grot);font-style:normal;font-weight:600}
 
 /* HORIZONTAL SCENES */
 #scene{height:100vh}
@@ -224,7 +209,6 @@ footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236
   .sticky{left:var(--gut);right:var(--gut);justify-content:center;bottom:16px}
   header{padding:16px var(--gut)}
   header .logo .it{display:none}
-  #dopo .full::after{background:rgba(11,10,9,.72)}
   footer{flex-direction:column;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -248,18 +232,11 @@ footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236
 #scene .reply .who{display:block;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#fff;margin-bottom:8px}
 #scene .reply b{display:block;font-family:var(--bodoni);font-weight:600;font-size:clamp(17px,1.6vw,24px);line-height:1.25;color:#fff}
 #scene .reply .subt{display:block;margin-top:6px}
-#choices{display:flex;flex-direction:column;align-items:stretch;gap:10px;width:min(600px,100%);margin-top:6px}
-#choices .hint{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--sub)}
-.choice{font:inherit;font-family:var(--bodoni);font-weight:500;font-size:clamp(15px,1.4vw,19px);color:#fff;background:rgba(11,10,9,.45);border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:15px 24px;cursor:pointer;transition:background .3s,color .3s,border-color .3s,transform .3s}
-.choice:hover{background:var(--sub);border-color:var(--sub);color:var(--black);transform:translateY(-2px)}
-#dopo .end{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
-#dopo .end.show{opacity:1;transform:none}
 @media (max-width:760px){
   #scene .answers{gap:10px}
   #scene .ans b{font-size:15px}
   #scene .reply{padding:12px 14px}
   #scene .say{margin:10px 0 8px}
-  .choice{padding:13px 18px}
 }
 </style>
 </head>
@@ -309,18 +286,6 @@ footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236
   <p class="known">Знакомо?</p>
 </section>
 
-<section class="scene" id="dopo">
-  <div class="full"><img src="img/rome-bridge.jpg" alt="Дарья с чашкой кофе на мосту Святого Ангела"></div>
-  <div class="center card">
-    <p class="big">Три месяца спустя</p>
-    <p class="label">после начала занятий</p>
-  </div>
-  <div class="talk" id="talk">
-    <div class="ln"><span class="who">Бариста</span><span class="itl" data-reveal>Buongiorno! Cosa le preparo?</span><span class="subt spoil">Доброе утро! Что вам приготовить?</span><span class="tap-hint">нажмите на фразу — увидите перевод</span></div>
-    <div id="choices"></div>
-  </div>
-  <p class="end">И вы поняли <span class="it">каждое слово.</span></p>
-</section>
 
 <section class="scene" id="scene">
   <div class="track">
@@ -444,34 +409,6 @@ $$('#scene .ans').forEach(b => b.addEventListener('click', () => {
   reply.innerHTML = `<span class="who">${box.dataset.who} отвечает</span><b>${b.dataset.it}</b><span class="subt">${b.dataset.ru}</span>`;
   reply.classList.add('show'); pop(reply);
 }));
-// bar dialogue: you choose what to say
-const R = [
-  [['Un cappuccino e un cornetto, per favore.','Капучино и круассан, пожалуйста.','Al banco o al tavolo?','У стойки или за столиком?'],
-   ['Un caffè macchiato, grazie.','Кофе с капелькой молока, спасибо.','Subito! Al banco o al tavolo?','Сейчас! У стойки или за столиком?']],
-  [['Al banco, grazie.','У стойки, спасибо.','Ecco a lei. Buona giornata!','Пожалуйста. Хорошего дня!'],
-   ['Al tavolo, per favore.','За столиком, пожалуйста.','Si accomodi, glielo porto io.','Присаживайтесь, я принесу.']]
-];
-const talk = $('#talk'), choices = $('#choices');
-const say = (who, it, ru, you) => {
-  const d = document.createElement('div');
-  d.className = 'ln' + (you ? ' you' : '');
-  d.innerHTML = `<span class="who">${who}</span><span class="itl" data-reveal>${it}</span><span class="subt${you ? '' : ' spoil'}">${ru}</span>`;
-  talk.insertBefore(d, choices); pop(d);
-  const all = talk.querySelectorAll('.ln');
-  if (all.length > 3) all[0].remove();
-};
-function round(r){
-  if (r >= R.length) { choices.innerHTML = ''; $('#dopo .end').classList.add('show'); return; }
-  choices.innerHTML = '<span class="hint">Ваш ответ</span>' + R[r].map((o,k) => `<button type="button" class="choice" data-k="${k}">${o[0]}</button>`).join('');
-  choices.querySelectorAll('.choice').forEach(b => b.onclick = () => {
-    const o = R[r][+b.dataset.k];
-    choices.innerHTML = '';
-    say('Вы', o[0], o[1], true);
-    setTimeout(() => { say('Бариста', o[2], o[3]); setTimeout(() => round(r+1), 450); }, 700);
-  });
-  pop(choices);
-}
-round(0);
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!window.gsap || !window.ScrollTrigger || reduce) {
@@ -481,10 +418,6 @@ if (!window.gsap || !window.ScrollTrigger || reduce) {
   $$('.scene').forEach(s=>s.style.height='auto');
   $('#tunnel .lines').style.cssText='position:relative;padding:30vh 0;display:grid;gap:30px';
   $$('#tunnel .lines p').forEach(p=>p.style.cssText='position:relative;transform:none;top:auto');
-  $('#dopo .card').style.position='relative';
-  $('#dopo .talk').style.cssText='position:relative;transform:none;top:auto;padding:10vh 0';
-  $('#dopo .end').style.position='relative';
-  $('#dopo .end').classList.add('show');
   $('#scene .track').style.cssText='flex-direction:column;width:100%';
   $$('#scene .panel').forEach(p=>{p.style.height='auto';p.style.padding='14vh var(--gut)'});
   $('#regia .portrait').style.cssText='position:relative;width:100%;height:80vh';
@@ -579,25 +512,6 @@ gsap.timeline({scrollTrigger:{trigger:'#caos',start:'top top',end:'+=260%',pin:t
   .to('#caos .known',{opacity:1,y:0,duration:1},4.6)
   .addLabel('stop-known',5.8)
   .to({}, {duration:.6});
-
-// three months later
-const firstLn = $('#dopo .ln');
-gsap.set('#dopo .full',{opacity:0,scale:1.25});
-gsap.set('#dopo .card',{opacity:0});
-gsap.set('#dopo .card .big',{letterSpacing:'.2em',filter:'blur(14px)'});
-gsap.set([firstLn,'#choices'],{opacity:0,y:30});
-const dopo = gsap.timeline({scrollTrigger:{trigger:'#dopo',start:'top top',end:'+=260%',pin:true,scrub:SCRUB}});
-dopo.to('#dopo .card',{opacity:1,duration:1},0)
-    .to('#dopo .card .big',{letterSpacing:'-.02em',filter:'blur(0px)',duration:1.6,ease:'power2.out'},0)
-    .addLabel('stop-card',1.8)
-    .to('#dopo .card',{opacity:0,scale:.92,duration:.8},2.2)
-    .to('#dopo .full',{opacity:1,scale:1,duration:2.4,ease:'power2.out'},2.4)
-    // the photo sinks back so the dialogue reads cleanly
-    .to('#dopo .full img',{filter:'brightness(.32) saturate(.7) blur(3px)',duration:1.2},3.4)
-    .to(firstLn,{opacity:1,y:0,duration:.7,ease:'power3.out'},3.6)
-    .to('#choices',{opacity:1,y:0,duration:.7,ease:'power3.out'},4.2)
-    .addLabel('stop-talk',5.2)
-    .to({}, {duration:.5});
 
 // horizontal scenes
 const track = $('#scene .track');
