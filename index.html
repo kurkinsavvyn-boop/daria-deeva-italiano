@@ -195,7 +195,7 @@ header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
 #fine p{margin-top:5vh;font-size:clamp(19px,1.6vw,24px);font-weight:500;max-width:30em}
 #fine .book{background:var(--black);margin-top:4vh}
 #fine .book::before{background:var(--paper)}
-footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:flex;justify-content:space-between;font-size:12px}
+footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236,232,224,.18);display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--dim)}
 
 @media (min-width:761px){
   #hero .full{left:38%}
@@ -225,7 +225,7 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
   header{padding:16px var(--gut)}
   header .logo .it{display:none}
   #dopo .full::after{background:rgba(11,10,9,.72)}
-  footer{flex-direction:column;gap:4px;bottom:16px}
+  footer{flex-direction:column;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){
   .grain,.cue i{animation:none}
@@ -358,7 +358,7 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
 </section>
 
 <section class="scene" id="lezione">
-  <div class="head"><span class="label">Один урок</span><span class="it">60 минут, которые вы проживаете</span></div>
+  <div class="head"><span class="label">Один урок</span><span class="it">60 минут живого итальянского под ваши задачи</span></div>
   <div class="center">
     <p class="clock"><span id="mm">00</span><small>мин</small></p>
     <div class="phase" id="phase"></div>
@@ -388,15 +388,9 @@ footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:fl
     <span>Пробный урок · <b>по запросу</b></span>
     <span>Пакеты уроков · <b>скоро</b></span>
   </div>
-</section>
-
-<section class="scene" id="fine">
-  <div class="center">
-    <p class="words"><span class="fine">Fine.<i class="strike"></i></span><span class="inizio">Inizio.</span></p>
-    <a class="book" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener"><span>Написать Дарье в Telegram</span><span>→</span></a>
-  </div>
   <footer><span>© 2026 Дарья Деева · Итальянский онлайн</span><span>@Daria_healthcoach</span></footer>
 </section>
+
 
 </main>
 
@@ -410,11 +404,11 @@ try { $('#romaTime').textContent = new Intl.DateTimeFormat('ru-RU',{timeZone:'Eu
 
 // lesson phases
 const P = [
-  {from:0, to:5,  it:'Разминка',   ru:'Пара лёгких вопросов на итальянском, чтобы включиться.'},
-  {from:5, to:15, it:'Видео',      ru:'Сцена из жизни: настоящий бар, настоящая скорость речи.'},
-  {from:15,to:30, it:'Живой язык', ru:'Разбираем фразы из видео и произношение.'},
-  {from:30,to:50, it:'Диалог',     ru:'Проигрываем ситуацию: я бариста, вы гость.'},
-  {from:50,to:60, it:'Задание',    ru:'Маленькая миссия в реальной жизни до следующей встречи.'}
+  {from:0, to:5,  it:'Разговор',  ru:'Начинаем с живого общения на итальянском.'},
+  {from:5, to:20, it:'Ситуация',  ru:'Берём реальную ситуацию из жизни в Италии.'},
+  {from:20,to:35, it:'Практика',  ru:'Отрабатываем фразы и произношение, пока они не станут вашими.'},
+  {from:35,to:55, it:'Диалог',    ru:'Проживаем ситуацию вживую, как будто вы уже там.'},
+  {from:55,to:60, it:'Итог',      ru:'Закрепляем главное и решаем, что дальше.'}
 ];
 const phase = $('#phase'), tl = $('#tl');
 P.forEach(p => {
@@ -503,7 +497,6 @@ if (!window.gsap || !window.ScrollTrigger || reduce) {
   $('#phase').style.height='auto';
   phs.forEach(p=>{p.style.position='relative';p.style.marginBottom='24px'});
   $('#lezione .center').style.position='relative';
-  $('#fine .strike').style.transform='scaleX(1)';
   return;
 }
 
@@ -646,16 +639,20 @@ const setPhase = k => {
   active = k;
 };
 const clock = {t:0};
-const les = gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=340%',pin:true,scrub:SCRUB}})
-  .to(clock,{t:60,ease:'none',duration:10,onUpdate(){
-    const t = clock.t;
-    $('#mm').textContent = String(Math.floor(t)).padStart(2,'0');
-    let k = P.findIndex(p => t < p.to); if (k < 0) k = P.length-1;
-    setPhase(k);
-    P.forEach((p,i) => bars[i].style.transform = `scaleX(${gsap.utils.clamp(0,1,(t-p.from)/(p.to-p.from))})`);
-  }})
-  .to({}, {duration:.6});
-P.forEach((p,i)=>les.addLabel('stop-p'+i, ((p.from+p.to)/2)/6));
+const draw = () => {
+  const t = clock.t;
+  $('#mm').textContent = String(Math.floor(t)).padStart(2,'0');
+  let k = P.findIndex(p => t < p.to); if (k < 0) k = P.length-1;
+  setPhase(k);
+  P.forEach((p,i) => bars[i].style.transform = `scaleX(${gsap.utils.clamp(0,1,(t-p.from)/(p.to-p.from))})`);
+};
+// the clock runs on its own once the scene is on screen: 60 minutes in ~10 seconds, then loops
+const run = gsap.to(clock,{t:60,duration:10,ease:'none',paused:true,onUpdate:draw,repeat:-1,repeatDelay:1.5});
+const les = gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=100%',pin:true,scrub:SCRUB,
+  onEnter:()=>run.restart(), onEnterBack:()=>run.restart(), onLeave:()=>run.pause(), onLeaveBack:()=>run.pause()}})
+  .from('#lezione .center',{opacity:0,y:40,duration:1})
+  .addLabel('stop-les',1.2)
+  .to({}, {duration:.4});
 setPhase(0);
 
 // ticket
@@ -672,18 +669,6 @@ if (matchMedia('(pointer:fine)').matches) {
   });
   ticket.addEventListener('mouseleave', () => { rx(0); ry(0); });
 }
-
-// finale: Fine → Inizio
-gsap.set('#fine .inizio',{yPercent:60,opacity:0});
-gsap.set('#fine .book',{opacity:0,y:30});
-gsap.timeline({scrollTrigger:{trigger:'#fine',start:'top top',end:'+=160%',pin:true,scrub:SCRUB}})
-  .from('#fine .fine',{opacity:0,scale:1.4,filter:'blur(16px)',duration:1})
-  .to('#fine .strike',{scaleX:1,duration:.8,ease:'power2.inOut'},'+=.3')
-  .to('#fine .fine',{opacity:.35,duration:.5})
-  .to('#fine .inizio',{yPercent:0,opacity:1,duration:1,ease:'expo.out'})
-  .to('#fine .book',{opacity:1,y:0,duration:.8})
-  .addLabel('stop-fine')
-  .to({}, {duration:.3});
 
 // ---------- one gesture = one beat ----------
 let stops = [];
