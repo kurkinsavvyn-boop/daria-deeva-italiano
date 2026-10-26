@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parla italiano · Дарья Деева</title>
+<meta name="description" content="Итальянский для жизни в Италии. Индивидуальные онлайн-уроки с Дарьей Деевой.">
+<meta property="og:title" content="Parla italiano · Дарья Деева">
+<meta property="og:description" content="Итальянский для жизни в Италии. Индивидуально, онлайн, с любого уровня.">
+<meta property="og:image" content="img/vatican.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0B0A09;
+  --paper:#ECE8E0;
+  --red:#E0321F;
+  --sub:#F4D35E;
+  --btn:#C2271A;
+  --dim:rgba(236,232,224,.6);
+  --bodoni:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --grot:"Geologica",system-ui,-apple-system,sans-serif;
+  --gut:clamp(18px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--black)}
+body{color:var(--paper);font-family:var(--grot);font-size:17px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+main{overflow-x:clip}
+a{color:inherit;text-decoration:none}
+.it{font-family:var(--bodoni);font-style:italic;font-weight:400}
+.subt{color:var(--sub);font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.scene{position:relative;min-height:100vh;overflow:hidden}
+.full{position:absolute;inset:0}
+.full img{width:100%;height:100%;object-fit:cover}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--gut)}
+.label{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--dim)}
+
+/* film grain + vignette */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+/* intro shutter */
+#intro{position:fixed;inset:0;z-index:100;pointer-events:none}
+#intro .half{position:absolute;left:0;width:100%;height:50.5%;background:var(--black)}
+#intro .top{top:0}
+#intro .bot{bottom:0}
+#intro .slate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:2}
+#intro .time{font-size:13px;letter-spacing:.4em;color:var(--dim);font-variant-numeric:tabular-nums}
+#intro .presenta{font-family:var(--bodoni);font-size:clamp(28px,4vw,52px);font-style:italic}
+#intro .presenta span{font-family:var(--grot);font-style:normal;font-size:.36em;letter-spacing:.3em;text-transform:uppercase;display:block;text-align:center;color:var(--dim);margin-top:10px}
+
+/* chrome */
+header{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:22px var(--gut);mix-blend-mode:difference;color:#fff;font-size:14px}
+header .logo{font-weight:500;letter-spacing:.02em}
+header .logo .it{font-size:17px;margin-left:6px}
+header a.tg{border-bottom:1px solid #fff;padding-bottom:2px}
+.sticky{position:fixed;right:var(--gut);bottom:26px;z-index:85;display:flex;align-items:center;gap:12px;background:var(--btn);color:#fff;padding:15px 22px;border-radius:999px;font-weight:500;font-size:15px;box-shadow:0 10px 30px rgba(0,0,0,.45);transform:translateY(160%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.sticky.show{transform:none}
+.sticky i{width:8px;height:8px;border-radius:50%;background:#fff}
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--red);transform-origin:left;transform:scaleX(0);z-index:81}
+.cursor{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;mix-blend-mode:difference;z-index:120;pointer-events:none;transition:width .3s,height .3s,margin .3s;display:none}
+.cursor.big{width:70px;height:70px;margin:-35px 0 0 -35px}
+@media (pointer:fine){.cursor{display:block}}
+
+/* HERO */
+#hero .full img{object-position:50% 28%;filter:saturate(.85) contrast(1.05)}
+#hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.15) 0%,rgba(11,10,9,.05) 40%,rgba(11,10,9,.85) 100%)}
+#hero h1{position:absolute;left:var(--gut);right:var(--gut);bottom:15vh;font-family:var(--bodoni);font-style:italic;font-weight:400;font-size:clamp(76px,15vw,270px);line-height:.85;letter-spacing:-.04em}
+#hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .08em}
+#hero h1 .c{display:inline-block}
+#hero .row2{display:block;padding-left:8vw}
+#hero .tag{position:absolute;left:var(--gut);bottom:7vh;right:var(--gut);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+#hero .tag p{font-size:clamp(16px,1.4vw,20px);max-width:24em}
+.cue{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:12px;white-space:nowrap}
+.cue i{display:block;width:1px;height:46px;background:var(--paper);transform-origin:top;animation:cue 2s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* TUNNEL */
+#tunnel{height:100vh}
+#tunnel .full img{object-position:49% 50%;filter:sepia(.25) brightness(.8)}
+#tunnel .lines p{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-weight:500;font-size:clamp(30px,4.6vw,72px);line-height:1.05;letter-spacing:-.03em;padding:0 var(--gut);text-shadow:0 4px 40px rgba(0,0,0,.6)}
+#tunnel .lines p .it{color:var(--sub)}
+#tunnel .flash{position:absolute;inset:0;background:var(--paper);opacity:0}
+
+/* CHAOS */
+#caos{height:100vh;background:var(--paper);color:var(--black)}
+#caos .cloud span{position:absolute;white-space:nowrap;font-family:var(--bodoni);font-style:italic;line-height:1;will-change:transform,opacity,filter}
+#caos .what{font-family:var(--bodoni);font-style:italic;font-size:clamp(64px,11vw,190px);line-height:.9;letter-spacing:-.04em;color:var(--red);position:relative;z-index:2}
+#caos .known{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-weight:500;font-size:clamp(26px,3vw,44px);letter-spacing:-.02em;z-index:2}
+
+/* AFTER */
+#dopo{height:100vh}
+#dopo .full img{object-position:50% 40%;filter:brightness(.55) saturate(.9)}
+#dopo .full::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,10,9,.85) 0%,rgba(11,10,9,.35) 60%,rgba(11,10,9,.1) 100%)}
+#dopo .card{z-index:3}
+#dopo .card .big{font-family:var(--bodoni);font-size:clamp(54px,9vw,160px);letter-spacing:-.03em;line-height:.9;font-style:italic}
+#dopo .card .label{margin-top:22px}
+#dopo .talk{position:absolute;left:var(--gut);top:50%;transform:translateY(-50%);width:min(640px,100% - 2*var(--gut));display:flex;flex-direction:column;gap:26px;z-index:2}
+#dopo .ln .who{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:6px}
+#dopo .ln .itl{display:block;font-family:var(--bodoni);font-style:italic;font-size:clamp(26px,3vw,44px);line-height:1.1}
+#dopo .ln .subt{display:block;margin-top:6px;font-size:clamp(15px,1.3vw,18px)}
+#dopo .ln.you .itl{color:#fff}
+#dopo .ln.you .who{color:var(--red)}
+#dopo .end{position:absolute;right:var(--gut);bottom:9vh;font-weight:500;font-size:clamp(24px,2.6vw,40px);letter-spacing:-.02em;text-align:right;z-index:2}
+#dopo .end .it{color:var(--sub)}
+
+/* HORIZONTAL SCENES */
+#scene{height:100vh}
+#scene .track{display:flex;height:100%;width:max-content}
+#scene .panel{position:relative;width:100vw;height:100vh;flex:none;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gut);overflow:hidden}
+#scene .panel.intro{background:var(--black)}
+#scene .panel.intro h2{font-weight:500;font-size:clamp(40px,6vw,104px);line-height:1;letter-spacing:-.04em;max-width:11em;margin-top:22px}
+#scene .panel.intro h2 .it{color:var(--red)}
+#scene .panel.intro .cue{margin-top:40px}
+#scene .panel.intro .cue i{width:46px;height:1px;animation:none}
+#scene .num{position:absolute;right:-.06em;bottom:-.2em;font-family:var(--bodoni);font-size:clamp(260px,46vw,720px);line-height:1;opacity:.1;letter-spacing:-.06em;pointer-events:none}
+#scene .where{font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+#scene .say{font-family:var(--bodoni);font-style:italic;font-size:clamp(48px,7.2vw,132px);line-height:.95;letter-spacing:-.035em;margin:24px 0 26px;max-width:min(9em,100%)}
+#scene .subt{font-size:clamp(18px,1.8vw,26px)}
+#scene .bar{position:absolute;left:var(--gut);right:var(--gut);bottom:30px;height:1px;background:rgba(236,232,224,.2);z-index:3}
+#scene .bar i{position:absolute;left:0;top:0;height:100%;width:100%;background:var(--paper);transform-origin:left;transform:scaleX(0)}
+
+/* CREDITS */
+#regia{height:100vh;background:var(--black)}
+#regia .portrait{position:absolute;left:0;top:0;width:50%;height:100%;clip-path:circle(75% at 50% 45%)}
+#regia .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:grayscale(.2)}
+#regia .roll-wrap{position:absolute;right:0;top:0;width:50%;height:100%;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%)}
+#regia .roll{padding:30vh var(--gut) 30vh;text-align:center;display:flex;flex-direction:column;gap:9vh}
+#regia .cr .label{display:block;margin-bottom:12px}
+#regia .cr b{display:block;font-family:var(--bodoni);font-weight:400;font-size:clamp(34px,4vw,64px);line-height:1;letter-spacing:-.02em}
+#regia .cr b.it{font-style:italic}
+#regia .cr span.ru{display:block;margin-top:10px;color:var(--dim);font-size:15px}
+#regia .cr.lead b{font-size:clamp(46px,6vw,96px)}
+
+/* LESSON TIMER */
+#lezione{height:100vh;background:var(--black)}
+#lezione .clock{font-weight:300;font-size:clamp(110px,24vw,400px);line-height:.8;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+#lezione .clock small{font-size:clamp(16px,3.8vw,64px);letter-spacing:0;color:var(--dim);margin-left:.2em}
+#lezione .phase{height:clamp(130px,16vw,200px);position:relative;width:100%;margin-top:4vh}
+#lezione .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center}
+#lezione .ph b{font-family:var(--bodoni);font-style:italic;font-weight:400;font-size:clamp(40px,5vw,84px);color:var(--red);line-height:1}
+#lezione .ph span{margin-top:14px;font-size:clamp(16px,1.5vw,21px);max-width:26em}
+#lezione .timeline{position:absolute;left:var(--gut);right:var(--gut);bottom:9vh;display:flex;gap:4px}
+#lezione .timeline div{height:3px;background:rgba(236,232,224,.18);position:relative;overflow:hidden}
+#lezione .timeline div i{position:absolute;inset:0;background:var(--paper);transform-origin:left;transform:scaleX(0)}
+#lezione .center{padding-top:12vh}
+#lezione .head{position:absolute;top:10vh;left:0;right:0;text-align:center;z-index:2}
+#lezione .head .it{font-size:clamp(22px,2.2vw,32px);display:block;margin-top:8px}
+
+/* TICKET */
+#biglietto{background:var(--black);padding:16vh var(--gut) 14vh;display:flex;flex-direction:column;align-items:center;perspective:1400px}
+#biglietto h2{font-weight:500;font-size:clamp(34px,4.6vw,72px);letter-spacing:-.035em;line-height:1;text-align:center;margin-bottom:8vh}
+#biglietto h2 .it{color:var(--sub)}
+.ticket{display:grid;grid-template-columns:1fr 210px;width:min(860px,100%);background:var(--paper);color:var(--black);border-radius:18px;transform-style:preserve-3d;box-shadow:0 50px 120px rgba(0,0,0,.6);position:relative;will-change:transform}
+.ticket .main{padding:38px 42px;border-right:2px dashed rgba(11,10,9,.25);position:relative}
+.ticket .main::before,.ticket .main::after{content:"";position:absolute;right:-17px;width:32px;height:32px;border-radius:50%;background:var(--black)}
+.ticket .main::before{top:-16px}
+.ticket .main::after{bottom:-16px}
+.ticket .row{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(11,10,9,.6)}
+.ticket .film{font-family:var(--bodoni);font-style:italic;font-size:clamp(46px,6vw,84px);line-height:.9;letter-spacing:-.03em;margin:22px 0 10px}
+.ticket .what{font-size:18px;font-weight:500}
+.ticket .info{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:8px 34px;margin-top:30px;font-size:13px}
+.ticket .info span{display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(11,10,9,.6);margin-bottom:2px}
+.ticket .stub{padding:30px 24px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center}
+.ticket .stub .free{font-family:var(--bodoni);font-size:44px;font-style:italic;color:var(--red);line-height:1;writing-mode:vertical-rl;transform:rotate(180deg)}
+.ticket .barcode{width:100%;height:46px;background:repeating-linear-gradient(90deg,var(--black) 0 2px,transparent 2px 4px,var(--black) 4px 7px,transparent 7px 9px,var(--black) 9px 10px,transparent 10px 13px)}
+.ticket .glare{position:absolute;inset:0;border-radius:18px;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.55),transparent 45%);mix-blend-mode:soft-light}
+.book{margin-top:7vh;display:inline-flex;align-items:center;gap:16px;background:var(--btn);color:#fff;font-size:18px;font-weight:500;padding:22px 34px;border-radius:999px;position:relative;overflow:hidden;transition:color .4s}
+.book span{position:relative;z-index:1}
+.book::before{content:"";position:absolute;inset:0;background:var(--paper);transform:translateY(101%);transition:transform .5s cubic-bezier(.16,1,.3,1);border-radius:inherit}
+.book:hover{color:var(--black)}
+.book:hover::before{transform:none}
+.prices{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-top:6vh;color:var(--dim);font-size:15px}
+.prices b{color:var(--paper);font-weight:500}
+
+/* FINALE */
+#fine{height:100vh;background:var(--btn);color:var(--paper)}
+#fine .words{position:relative;font-family:var(--bodoni);font-style:italic;font-size:clamp(110px,22vw,380px);line-height:.85;letter-spacing:-.05em}
+#fine .fine{position:relative;display:inline-block}
+#fine .fine .strike{position:absolute;left:-4%;top:52%;width:108%;height:.06em;background:var(--black);transform-origin:left;transform:scaleX(0)}
+#fine .inizio{display:block;color:var(--paper)}
+#fine p{margin-top:5vh;font-size:clamp(19px,1.6vw,24px);font-weight:500;max-width:30em}
+#fine .book{background:var(--black);margin-top:4vh}
+#fine .book::before{background:var(--paper)}
+footer{position:absolute;left:var(--gut);right:var(--gut);bottom:22px;display:flex;justify-content:space-between;font-size:12px}
+
+@media (min-width:761px){
+  #hero .full{left:38%}
+  #hero .full::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--black) 0%,rgba(11,10,9,.6) 22%,transparent 50%)}
+  #hero h1{bottom:22vh;z-index:2}
+  #hero .tag{z-index:2}
+  #dopo .full{left:42%}
+  #dopo .full::after{background:linear-gradient(90deg,var(--black) 0%,rgba(11,10,9,.55) 25%,rgba(11,10,9,.1) 60%)}
+  #dopo .talk{width:min(600px,52%)}
+}
+@media (max-width:760px){
+  #hero h1{bottom:22vh}
+  #hero .tag{flex-direction:column;align-items:flex-start}
+  #regia .portrait{width:100%;height:55%}
+  #regia .roll-wrap{width:100%;top:45%;height:55%}
+  #regia .roll{gap:7vh;padding-top:20vh}
+  .ticket{grid-template-columns:1fr}
+  .ticket .main{border-right:0;border-bottom:2px dashed rgba(11,10,9,.25);padding:28px 24px}
+  .ticket .main::before,.ticket .main::after{display:none}
+  .ticket .stub{flex-direction:row;padding:20px 24px;gap:20px}
+  .ticket .stub .free{writing-mode:horizontal-tb;transform:none;font-size:36px}
+  .ticket .barcode{width:120px}
+  .ticket .info{grid-template-columns:1fr 1fr}
+  .sticky{left:var(--gut);right:var(--gut);justify-content:center;bottom:16px}
+  header{padding:16px var(--gut)}
+  header .logo .it{display:none}
+  #dopo .full::after{background:linear-gradient(180deg,rgba(11,10,9,.6),rgba(11,10,9,.85))}
+  #dopo .end{left:var(--gut);text-align:left;bottom:7vh}
+  footer{flex-direction:column;gap:4px;bottom:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .grain,.cue i{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+
+<div id="intro" aria-hidden="true">
+  <div class="half top"></div><div class="half bot"></div>
+  <div class="slate">
+    <p class="time">ROMA · <span id="romaTime">07:42</span></p>
+    <p class="presenta">Daria Deeva<span>presenta</span></p>
+  </div>
+</div>
+
+<header>
+  <a class="logo" href="#hero">Дарья Деева<span class="it">Lingua italiana</span></a>
+  <a class="tg" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener">Telegram ↗</a>
+</header>
+
+<a class="sticky" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener"><i></i>Бесплатное знакомство</a>
+
+<main>
+
+<section class="scene" id="hero">
+  <div class="full"><img src="img/vatican.jpg" alt="Дарья Деева на площади Святого Петра в Риме"></div>
+  <div class="shade"></div>
+  <h1 aria-label="Parla italiano"><span class="row1">Parla</span> <span class="row2">italiano.</span></h1>
+  <div class="tag">
+    <p>Итальянский для жизни в Италии.<br>С&nbsp;Дарьей Деевой.</p>
+    <span class="cue"><i></i>Scorri</span>
+  </div>
+</section>
+
+<section class="scene" id="tunnel">
+  <div class="full zoom"><img src="img/arcade.jpg" alt="Арочная галерея в Сан-Северино-Марке"></div>
+  <div class="lines">
+    <p>Вы переезжаете в&nbsp;Италию.</p>
+    <p>Солнце. Арки. Эспрессо.</p>
+    <p>Но вы не понимаете <span class="it">ни&nbsp;слова.</span></p>
+  </div>
+  <div class="flash"></div>
+</section>
+
+<section class="scene" id="caos">
+  <div class="cloud" aria-hidden="true"></div>
+  <div class="center"><p class="what">Come, scusi?</p></div>
+  <p class="known">Знакомо?</p>
+</section>
+
+<section class="scene" id="dopo">
+  <div class="full"><img src="img/rome-bridge.jpg" alt="Дарья с чашкой кофе на мосту Святого Ангела"></div>
+  <div class="center card">
+    <p class="big">Tre mesi dopo</p>
+    <p class="label">Три месяца спустя</p>
+  </div>
+  <div class="talk">
+    <div class="ln"><span class="who">Бариста</span><span class="itl">Buongiorno! Cosa le preparo?</span><span class="subt">Доброе утро! Что вам приготовить?</span></div>
+    <div class="ln you"><span class="who">Вы</span><span class="itl">Un cappuccino e un cornetto, per favore.</span><span class="subt">Капучино и круассан, пожалуйста.</span></div>
+    <div class="ln"><span class="who">Бариста</span><span class="itl">Al banco o al tavolo?</span><span class="subt">У стойки или за столиком?</span></div>
+    <div class="ln you"><span class="who">Вы</span><span class="itl">Al banco. Grazie mille!</span><span class="subt">У стойки. Большое спасибо!</span></div>
+  </div>
+  <p class="end">И вы поняли <span class="it">каждое слово.</span></p>
+</section>
+
+<section class="scene" id="scene">
+  <div class="track">
+    <div class="panel intro">
+      <p class="label">Il metodo</p>
+      <h2>Каждый урок — <span class="it">сцена</span> из вашей будущей жизни.</h2>
+      <span class="cue"><i></i>Scena dopo scena</span>
+    </div>
+    <div class="panel" style="background:#6E1C12"><span class="num">01</span><span class="where">Scena 01 · Бар</span><p class="say">Un caffè al banco.</p><p class="subt">Кофе у стойки.</p></div>
+    <div class="panel" style="background:#1D2740"><span class="num">02</span><span class="where">Scena 02 · Квартира</span><p class="say">Le spese sono incluse?</p><p class="subt">Коммунальные платежи включены?</p></div>
+    <div class="panel" style="background:#7C5F22"><span class="num">03</span><span class="where">Scena 03 · Комуне</span><p class="say">Vorrei un appuntamento.</p><p class="subt">Я бы хотела записаться на приём.</p></div>
+    <div class="panel" style="background:#24402F"><span class="num">04</span><span class="where">Scena 04 · Врач</span><p class="say">Mi fa male qui.</p><p class="subt">У меня болит вот здесь.</p></div>
+    <div class="panel" style="background:#9A3418"><span class="num">05</span><span class="where">Scena 05 · Рынок</span><p class="say">Un etto di prosciutto.</p><p class="subt">Сто граммов прошутто.</p></div>
+    <div class="panel" style="background:#352842"><span class="num">06</span><span class="where">Scena 06 · Соседи</span><p class="say">Piacere, sono la nuova vicina!</p><p class="subt">Очень приятно, я ваша новая соседка!</p></div>
+  </div>
+  <div class="bar"><i></i></div>
+</section>
+
+<section class="scene" id="regia">
+  <div class="portrait"><img src="img/chair.jpg" alt="Дарья Деева"></div>
+  <div class="roll-wrap">
+    <div class="roll">
+      <div class="cr lead"><span class="label">Regia</span><b>Daria Deeva</b><span class="ru">Дарья Деева, преподаватель итальянского</span></div>
+      <div class="cr"><span class="label">Esperienza</span><b class="it">Dieci anni</b><span class="ru">преподаёт итальянский язык</span></div>
+      <div class="cr"><span class="label">Formazione</span><b class="it">Con lode</b><span class="ru">красный диплом и сертификат повышения квалификации</span></div>
+      <div class="cr"><span class="label">Metodo</span><b class="it">Tutto suo</b><span class="ru">интерактивные уроки по собственной методике</span></div>
+      <div class="cr"><span class="label">Formato</span><b>1 : 1 · online</b><span class="ru">индивидуально, с любого уровня</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="lezione">
+  <div class="head"><span class="label">Una lezione</span><span class="it">60 минут, которые вы проживаете</span></div>
+  <div class="center">
+    <p class="clock"><span id="mm">00</span><small>мин</small></p>
+    <div class="phase" id="phase"></div>
+  </div>
+  <div class="timeline" id="tl"></div>
+</section>
+
+<section id="biglietto">
+  <h2>Ваш билет <span class="it">в&nbsp;Италию</span></h2>
+  <div class="ticket" id="ticket">
+    <div class="main">
+      <div class="row"><span>Ingresso · Admit one</span><span>Online</span></div>
+      <p class="film">Primo incontro</p>
+      <p class="what">Бесплатное знакомство с Дарьей</p>
+      <div class="info">
+        <div><span>Sala</span>Видеозвонок</div>
+        <div><span>Posto</span>Только ваш</div>
+        <div><span>Livello</span>Любой</div>
+      </div>
+    </div>
+    <div class="stub"><p class="free">Gratis</p><div class="barcode"></div></div>
+    <div class="glare"></div>
+  </div>
+  <a class="book" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener"><span>Забронировать место</span><span>→</span></a>
+  <div class="prices">
+    <span>Урок 60 мин · <b>4 000 ₽</b></span>
+    <span>Пробный урок · <b>по запросу</b></span>
+    <span>Пакеты уроков · <b>скоро</b></span>
+  </div>
+</section>
+
+<section class="scene" id="fine">
+  <div class="center">
+    <p class="words"><span class="fine">Fine.<i class="strike"></i></span><span class="inizio">Inizio.</span></p>
+    <p>Этот фильм заканчивается. Ваш итальянский начинается с одного сообщения.</p>
+    <a class="book" href="https://t.me/Daria_healthcoach" target="_blank" rel="noopener"><span>Написать Дарье в Telegram</span><span>→</span></a>
+  </div>
+  <footer><span>© 2026 Дарья Деева · Итальянский онлайн</span><span>@Daria_healthcoach</span></footer>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+try { $('#romaTime').textContent = new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit'}).format(new Date()); } catch(e){}
+
+// lesson phases
+const P = [
+  {from:0, to:5,  it:'Riscaldamento', ru:'Разогрев: пара лёгких вопросов на итальянском.'},
+  {from:5, to:15, it:'Video',         ru:'Сцена из жизни: настоящий бар, настоящая скорость речи.'},
+  {from:15,to:30, it:'Lingua viva',   ru:'Разбираем живые фразы и произношение.'},
+  {from:30,to:50, it:'Gioco di ruolo',ru:'Ролевая игра: я бариста, вы гость.'},
+  {from:50,to:60, it:'Missione',      ru:'Задание в реальную жизнь до следующей встречи.'}
+];
+const phase = $('#phase'), tl = $('#tl');
+P.forEach(p => {
+  phase.insertAdjacentHTML('beforeend', `<div class="ph"><b>${p.it}</b><span>${p.ru}</span></div>`);
+  tl.insertAdjacentHTML('beforeend', `<div style="flex:${p.to-p.from}"><i></i></div>`);
+});
+const phs = $$('#phase .ph'), bars = $$('#tl i');
+
+// chaos cloud
+const words = ['Allora…','Mi scusi?','Codice fiscale','Avanti!','Prego?','Ma dai!','Che cosa vuole?','Il numero, per favore','Tocca a lei','Senta…','Boh','Lo scontrino!','Dica!','Una firma qui','Allo sportello tre','Torni domani','Ha la ricetta?','Contanti o carta?','Sacchetto?','Basta così?','Permesso di soggiorno','Va bene?','Insomma…','Non c\'è problema','Si accomodi','Mi segue?','Eh, niente','Come no!'];
+const cloud = $('#caos .cloud');
+let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+words.forEach(w => {
+  const s = document.createElement('span');
+  s.textContent = w;
+  s.style.left = (rnd()*80 + 2) + '%';
+  s.style.top = (rnd()*86 + 4) + '%';
+  s.style.fontSize = (18 + rnd()*48) + 'px';
+  s.style.opacity = (.25 + rnd()*.6).toFixed(2);
+  cloud.appendChild(s);
+});
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!window.gsap || !window.ScrollTrigger || reduce) {
+  // static fallback: everything readable, no pinning
+  $('#intro').remove();
+  $('.sticky').classList.add('show');
+  $$('.scene').forEach(s=>s.style.height='auto');
+  $('#tunnel .lines').style.cssText='position:relative;padding:30vh 0;display:grid;gap:30px';
+  $$('#tunnel .lines p').forEach(p=>p.style.cssText='position:relative;transform:none;top:auto');
+  $('#dopo .card').style.position='relative';
+  $('#dopo .talk').style.cssText='position:relative;transform:none;top:auto;padding:10vh 0';
+  $('#dopo .end').style.position='relative';
+  $('#scene .track').style.cssText='flex-direction:column;width:100%';
+  $('#regia .portrait').style.cssText='position:relative;width:100%;height:80vh';
+  $('#regia .roll-wrap').style.cssText='position:relative;width:100%';
+  $('#phase').style.height='auto';
+  phs.forEach(p=>{p.style.position='relative';p.style.marginBottom='24px'});
+  $('#lezione .center').style.position='relative';
+  $('#fine .strike').style.transform='scaleX(1)';
+  return;
+}
+
+gsap.registerPlugin(ScrollTrigger);
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+scrollTo(0,0);
+ScrollTrigger.config({ignoreMobileResize:true});
+
+// cursor
+const cur = $('.cursor');
+if (matchMedia('(pointer:fine)').matches) {
+  const xTo = gsap.quickTo(cur,'x',{duration:.35,ease:'power3'}), yTo = gsap.quickTo(cur,'y',{duration:.35,ease:'power3'});
+  addEventListener('mousemove', e => { xTo(e.clientX); yTo(e.clientY); });
+  $$('a,.ticket').forEach(a => { a.addEventListener('mouseenter',()=>cur.classList.add('big')); a.addEventListener('mouseleave',()=>cur.classList.remove('big')); });
+}
+
+// page progress
+gsap.to('.progress',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
+
+// hero title split into letters
+const h1 = $('#hero h1');
+['row1','row2'].forEach(c => {
+  const el = h1.querySelector('.'+c);
+  el.innerHTML = el.textContent.split('').map(ch => `<span class="w"><span class="c">${ch}</span></span>`).join('');
+});
+
+// intro: slate, then shutter opens on the hero
+document.documentElement.style.overflow = 'hidden';
+const intro = gsap.timeline({defaults:{ease:'power3.out'},onComplete(){document.documentElement.style.overflow='';const i=$('#intro');i&&i.remove();ScrollTrigger.refresh();}});
+intro
+  .from('#intro .time',{opacity:0,letterSpacing:'1em',duration:1.1})
+  .from('#intro .presenta',{opacity:0,y:30,filter:'blur(10px)',duration:1.2},'-=.4')
+  .to('#intro .slate',{opacity:0,duration:.6,ease:'power2.in'},'+=.7')
+  .set('#hero .full img',{scale:1.35})
+  .addLabel('shutter')
+  .to('#intro .top',{yPercent:-100,duration:1.4,ease:'expo.inOut'},'shutter')
+  .to('#intro .bot',{yPercent:100,duration:1.4,ease:'expo.inOut'},'shutter')
+  .to('#hero .full img',{scale:1.05,duration:2.4,ease:'expo.out'},'shutter')
+  .from('#hero h1 .c',{yPercent:120,rotate:12,duration:1.3,stagger:.045,ease:'expo.out'},'shutter+=.55')
+  .from('#hero .tag > *',{opacity:0,y:20,duration:1,stagger:.15},'-=.8');
+$('#intro').style.pointerEvents='auto';
+$('#intro').addEventListener('click',()=>intro.progress(1));
+addEventListener('wheel',()=>{ if(intro.progress()<.45) intro.timeScale(3); },{passive:true,once:true});
+
+// hero exit
+gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}})
+  .to('#hero .full',{scale:1.25,filter:'brightness(.3) saturate(.6)',ease:'none'},0)
+  .to('#hero h1',{yPercent:-40,opacity:0,ease:'none'},0)
+  .to('#hero .tag',{opacity:0,ease:'none'},0);
+
+// sticky CTA
+ScrollTrigger.create({trigger:'#tunnel',start:'top 40%',endTrigger:'#biglietto',end:'top 60%',
+  onToggle:self=>$('.sticky').classList.toggle('show',self.isActive)});
+
+// tunnel: dolly into the arcade
+const tLines = $$('#tunnel .lines p');
+gsap.set(tLines,{opacity:0,y:40,filter:'blur(12px)'});
+const tun = gsap.timeline({scrollTrigger:{trigger:'#tunnel',start:'top top',end:'+=320%',pin:true,scrub:1}});
+tun.fromTo('#tunnel .zoom',{scale:1.05},{scale:4.2,transformOrigin:'49% 46%',ease:'power1.in',duration:10},0);
+tLines.forEach((p,i) => {
+  const at = .6 + i*2.9;
+  tun.to(p,{opacity:1,y:0,filter:'blur(0px)',duration:1,ease:'power2.out'},at);
+  if (i < tLines.length-1) tun.to(p,{opacity:0,y:-40,filter:'blur(12px)',duration:.9,ease:'power2.in'},at+1.9);
+});
+tun.to(tLines[tLines.length-1],{scale:1.15,opacity:0,duration:.8},9.2)
+   .to('#tunnel .flash',{opacity:1,duration:.8,ease:'power2.in'},9.2);
+
+// chaos: words flood in
+const cw = $$('#caos .cloud span');
+gsap.set(cw,{opacity:0,scale:0,rotate:()=>gsap.utils.random(-25,25)});
+gsap.set('#caos .what',{opacity:0,scale:2.4,filter:'blur(20px)'});
+gsap.set('#caos .known',{opacity:0,y:30});
+gsap.timeline({scrollTrigger:{trigger:'#caos',start:'top top',end:'+=260%',pin:true,scrub:1}})
+  .to(cw,{opacity:i=>.3+((i*37)%60)/100,scale:1,rotate:0,duration:2,stagger:{each:.12,from:'random'},ease:'back.out(2)'},0)
+  .to(cw,{x:()=>gsap.utils.random(-60,60),y:()=>gsap.utils.random(-40,40),duration:4,ease:'none'},0)
+  .to('#caos .what',{opacity:1,scale:1,filter:'blur(0px)',duration:1.2,ease:'expo.out'},2.6)
+  .to(cw,{filter:'blur(8px)',opacity:.08,duration:1.2},4.2)
+  .to('#caos .what',{scale:.9,opacity:.15,duration:1.2},4.2)
+  .to('#caos .known',{opacity:1,y:0,duration:1},4.6)
+  .to({}, {duration:.8});
+
+// three months later
+const lns = $$('#dopo .ln');
+gsap.set('#dopo .full',{opacity:0,scale:1.25});
+gsap.set('#dopo .card',{opacity:0});
+gsap.set('#dopo .card .big',{letterSpacing:'.2em',filter:'blur(14px)'});
+gsap.set(lns,{opacity:0,x:-40});
+gsap.set($$('#dopo .ln .subt'),{opacity:0});
+gsap.set('#dopo .end',{opacity:0,y:30});
+const dopo = gsap.timeline({scrollTrigger:{trigger:'#dopo',start:'top top',end:'+=380%',pin:true,scrub:1}});
+dopo.to('#dopo .card',{opacity:1,duration:1},0)
+    .to('#dopo .card .big',{letterSpacing:'-.03em',filter:'blur(0px)',duration:1.6,ease:'power2.out'},0)
+    .to('#dopo .card',{opacity:0,scale:.92,duration:.8},2.2)
+    .to('#dopo .full',{opacity:1,scale:1,duration:2.4,ease:'power2.out'},2.4);
+lns.forEach((l,i) => {
+  const at = 3.6 + i*1.3;
+  dopo.to(l,{opacity:1,x:0,duration:.7,ease:'power3.out'},at)
+      .to(l.querySelector('.subt'),{opacity:1,duration:.5},at+.45);
+});
+dopo.to(lns,{opacity:.55,duration:.6},9.2)
+    .to('#dopo .end',{opacity:1,y:0,duration:.8},9.3)
+    .to({}, {duration:.8});
+
+// horizontal scenes
+const track = $('#scene .track');
+const dist = () => track.scrollWidth - innerWidth;
+const hz = gsap.to(track,{x:()=>-dist(),ease:'none',
+  scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+gsap.to('#scene .bar i',{scaleX:1,ease:'none',scrollTrigger:{trigger:'#scene',start:'top top',end:()=>'+='+dist(),scrub:true,invalidateOnRefresh:true}});
+$$('#scene .panel:not(.intro)').forEach(p => {
+  gsap.from(p.querySelector('.say'),{yPercent:60,opacity:0,ease:'power3.out',scrollTrigger:{trigger:p,containerAnimation:hz,start:'left 75%',end:'left 25%',scrub:true}});
+  gsap.from(p.querySelector('.subt'),{opacity:0,y:20,scrollTrigger:{trigger:p,containerAnimation:hz,start:'left 50%',end:'left 15%',scrub:true}});
+  gsap.fromTo(p.querySelector('.num'),{xPercent:40},{xPercent:-30,ease:'none',scrollTrigger:{trigger:p,containerAnimation:hz,start:'left right',end:'right left',scrub:true}});
+});
+
+// credits
+gsap.set('#regia .portrait',{clipPath:'circle(0% at 50% 45%)'});
+gsap.timeline({scrollTrigger:{trigger:'#regia',start:'top top',end:'+=300%',pin:true,scrub:1}})
+  .to('#regia .portrait',{clipPath:'circle(75% at 50% 45%)',duration:2,ease:'power2.inOut'},0)
+  .fromTo('#regia .portrait img',{scale:1.4},{scale:1,duration:3,ease:'power2.out'},0)
+  .fromTo('#regia .roll',{yPercent:20},{yPercent:-62,duration:6,ease:'none'},.6);
+
+// lesson clock
+gsap.set(phs,{opacity:0,y:30});
+let active = -1;
+const setPhase = k => {
+  if (k === active) return;
+  if (active >= 0) gsap.to(phs[active],{opacity:0,y:-30,duration:.4,overwrite:true});
+  gsap.fromTo(phs[k],{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out',overwrite:true});
+  active = k;
+};
+const clock = {t:0};
+gsap.timeline({scrollTrigger:{trigger:'#lezione',start:'top top',end:'+=320%',pin:true,scrub:1}})
+  .to(clock,{t:60,ease:'none',duration:10,onUpdate(){
+    const t = clock.t;
+    $('#mm').textContent = String(Math.floor(t)).padStart(2,'0');
+    let k = P.findIndex(p => t < p.to); if (k < 0) k = P.length-1;
+    setPhase(k);
+    P.forEach((p,i) => bars[i].style.transform = `scaleX(${gsap.utils.clamp(0,1,(t-p.from)/(p.to-p.from))})`);
+  }})
+  .to({}, {duration:1});
+setPhase(0);
+
+// ticket
+const ticket = $('#ticket');
+gsap.from(ticket,{rotateX:70,y:200,opacity:0,ease:'power3.out',scrollTrigger:{trigger:'#biglietto',start:'top 75%',end:'top 15%',scrub:1}});
+gsap.from('#biglietto h2',{opacity:0,y:60,scrollTrigger:{trigger:'#biglietto',start:'top 85%',end:'top 40%',scrub:1}});
+gsap.from(['#biglietto .book','#biglietto .prices'],{opacity:0,y:40,stagger:.2,scrollTrigger:{trigger:ticket,start:'bottom 90%',end:'bottom 60%',scrub:1}});
+if (matchMedia('(pointer:fine)').matches) {
+  const rx = gsap.quickTo(ticket,'rotationX',{duration:.6,ease:'power3'}), ry = gsap.quickTo(ticket,'rotationY',{duration:.6,ease:'power3'});
+  ticket.addEventListener('mousemove', e => {
+    const r = ticket.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+    ry((x-.5)*16); rx((.5-y)*12);
+    ticket.style.setProperty('--gx', x*100+'%'); ticket.style.setProperty('--gy', y*100+'%');
+  });
+  ticket.addEventListener('mouseleave', () => { rx(0); ry(0); });
+}
+
+// finale: Fine → Inizio
+gsap.set('#fine .inizio',{yPercent:60,opacity:0});
+gsap.set(['#fine .center > p:not(.words)','#fine .book'],{opacity:0,y:30});
+gsap.timeline({scrollTrigger:{trigger:'#fine',start:'top top',end:'+=200%',pin:true,scrub:1}})
+  .from('#fine .fine',{opacity:0,scale:1.4,filter:'blur(16px)',duration:1})
+  .to('#fine .strike',{scaleX:1,duration:.8,ease:'power2.inOut'},'+=.3')
+  .to('#fine .fine',{opacity:.35,duration:.5})
+  .to('#fine .inizio',{yPercent:0,opacity:1,duration:1,ease:'expo.out'})
+  .to(['#fine .center > p:not(.words)','#fine .book'],{opacity:1,y:0,stagger:.2,duration:.8})
+  .to({}, {duration:.6});
+
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
