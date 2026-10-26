@@ -272,10 +272,6 @@ footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236
 
 <div id="intro" aria-hidden="true">
   <div class="half top"></div><div class="half bot"></div>
-  <div class="slate">
-    <p class="time">РИМ · <span id="romaTime">07:42</span></p>
-    <p class="presenta">Дарья Деева<span>представляет</span></p>
-  </div>
 </div>
 
 <header>
@@ -400,7 +396,6 @@ footer{width:100%;margin-top:12vh;padding-top:18px;border-top:1px solid rgba(236
 (() => {
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 
-try { $('#romaTime').textContent = new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit'}).format(new Date()); } catch(e){}
 
 // lesson phases
 const P = [
@@ -531,11 +526,8 @@ const intro = gsap.timeline({defaults:{ease:'power3.out'},onComplete(){
   introDone = true; document.documentElement.style.overflow=''; const i=$('#intro'); i&&i.remove(); ScrollTrigger.refresh();
 }});
 intro
-  .from('#intro .time',{opacity:0,letterSpacing:'1em',duration:1.1})
-  .from('#intro .presenta',{opacity:0,y:30,filter:'blur(10px)',duration:1.2},'-=.4')
-  .to('#intro .slate',{opacity:0,duration:.6,ease:'power2.in'},'+=.7')
   .set('#hero .full img',{scale:1.35})
-  .addLabel('shutter')
+  .addLabel('shutter','+=.15')
   .to('#intro .top',{yPercent:-100,duration:1.4,ease:'expo.inOut'},'shutter')
   .to('#intro .bot',{yPercent:100,duration:1.4,ease:'expo.inOut'},'shutter')
   .to('#hero .full img',{scale:1.05,duration:2.4,ease:'expo.out'},'shutter')
